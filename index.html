@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InfoPrados</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="logo">
+        <div class="logo-icon">IP</div>
+        <div class="logo-text">
+          <h1>InfoPrados</h1>
+          <p>Tecnologia</p>
+        </div>
+      </div>
+      <nav class="nav-desktop">
+        <button onclick="scrollToSection('inicio')">Início</button>
+        <button onclick="scrollToSection('sobre')">Sobre</button>
+        <button onclick="scrollToSection('servicos')">Serviços</button>
+        <button onclick="scrollToSection('contato')">Contato</button>
+        <button class="btn-primary" onclick="scrollToSection('contato')">Fale Conosco</button>
+      </nav>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+    <nav id="mobileMenu" class="nav-mobile hidden">
+      <button onclick="scrollToSection('inicio')">Início</button>
+      <button onclick="scrollToSection('sobre')">Sobre</button>
+      <button onclick="scrollToSection('servicos')">Serviços</button>
+      <button onclick="scrollToSection('contato')">Contato</button>
+    </nav>
+  </header>
+
+  <section id="inicio" class="section hero">Bem-vindo à InfoPrados</section>
+  <section id="sobre" class="section">Sobre Nós</section>
+  <section id="servicos" class="section">Nossos Serviços</section>
+  <section id="contato" class="section">Contato</section>
+
+  <footer class="footer">© 2025 InfoPrados. Todos os direitos reservados.</footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
