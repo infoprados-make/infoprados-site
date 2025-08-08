@@ -9,28 +9,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
         }
         .gradient-text {
             background: linear-gradient(to right, #3b82f6, #10b981);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .section {
-            display: none;
+        /* Animação para revelação de seções ao rolar */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .section.active {
-            display: block;
-        }
-        /* Custom animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -40,13 +38,13 @@
     <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
+                <a href="#home" class="flex items-center space-x-2">
                     <div class="bg-blue-500 text-white font-bold text-xl p-2 rounded-md">IP</div>
                     <div>
                         <h1 class="text-lg font-bold text-gray-800">InfoPrados</h1>
                         <p class="text-xs text-gray-500 -mt-1">Tecnologia</p>
                     </div>
-                </div>
+                </a>
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="nav-link text-gray-600 hover:text-blue-500 font-medium transition duration-300">Início</a>
                     <a href="#sobre" class="nav-link text-gray-600 hover:text-blue-500 font-medium transition duration-300">Sobre</a>
@@ -61,62 +59,60 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#home" class="nav-link block py-2 text-gray-600 hover:text-blue-500">Início</a>
-            <a href="#sobre" class="nav-link block py-2 text-gray-600 hover:text-blue-500">Sobre</a>
-            <a href="#servicos" class="nav-link block py-2 text-gray-600 hover:text-blue-500">Serviços</a>
-            <a href="#contato" class="nav-link block py-2 text-gray-600 hover:text-blue-500">Contato</a>
-            <a href="#contato" class="block mt-2 bg-blue-600 text-white text-center px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">Fale Conosco</a>
+            <a href="#home" class="nav-link-mobile block py-2 text-gray-600 hover:text-blue-500">Início</a>
+            <a href="#sobre" class="nav-link-mobile block py-2 text-gray-600 hover:text-blue-500">Sobre</a>
+            <a href="#servicos" class="nav-link-mobile block py-2 text-gray-600 hover:text-blue-500">Serviços</a>
+            <a href="#contato" class="nav-link-mobile block py-2 text-gray-600 hover:text-blue-500">Contato</a>
+            <a href="#contato" class="nav-link-mobile block mt-2 bg-blue-600 text-white text-center px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">Fale Conosco</a>
         </div>
     </header>
 
     <main>
         <!-- ===== Home Section ===== -->
-        <section id="home" class="section active fade-in">
-            <div class="container mx-auto px-6 py-16 md:py-24">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="text-center md:text-left">
-                        <span class="inline-block bg-blue-100 text-blue-600 text-sm font-semibold px-4 py-1 rounded-full mb-4">
-                            <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            Consultoria Especializada em Tecnologia
-                        </span>
-                        <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Transforme sua <br><span class="gradient-text">Empresa</span> com Tecnologia</h1>
-                        <p class="mt-6 text-lg text-gray-600 max-w-lg mx-auto md:mx-0">
-                            Oferecemos consultoria especializada em hardware, software e análise de maturidade tecnológica para impulsionar seu negócio em Prados - MG.
-                        </p>
-                        <div class="mt-8 flex justify-center md:justify-start space-x-4">
-                            <a href="#servicos" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">Nossos Serviços &rarr;</a>
-                            <a href="#contato" class="bg-gray-200 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition duration-300">Fale Conosco</a>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute -top-4 -right-4 w-32 h-32 bg-green-200 rounded-full opacity-50 blur-xl"></div>
-                        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-200 rounded-full opacity-50 blur-xl"></div>
-                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop" alt="[Imagem de dois homens trabalhando em um escritório moderno]" class="rounded-2xl shadow-2xl relative z-10">
+        <section id="home" class="container mx-auto px-6 py-16 md:py-24">
+            <div class="fade-in-section grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <span class="inline-block bg-blue-100 text-blue-600 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                        <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        Consultoria Especializada em Tecnologia
+                    </span>
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Transforme sua <br><span class="gradient-text">Empresa</span> com Tecnologia</h1>
+                    <p class="mt-6 text-lg text-gray-600 max-w-lg mx-auto md:mx-0">
+                        Oferecemos consultoria especializada em hardware, software e análise de maturidade tecnológica para impulsionar seu negócio em Prados - MG.
+                    </p>
+                    <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                        <a href="#servicos" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">Nossos Serviços &rarr;</a>
+                        <a href="#contato" class="bg-gray-200 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300 transition duration-300">Fale Conosco</a>
                     </div>
                 </div>
-                <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-                        <svg class="w-10 h-10 mx-auto text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <p class="text-3xl font-bold text-gray-800">10+</p>
-                        <p class="text-gray-500">Anos de Experiência</p>
-                    </div>
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-                        <svg class="w-10 h-10 mx-auto text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.125-1.274-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.125-1.274.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        <p class="text-3xl font-bold text-gray-800">200+</p>
-                        <p class="text-gray-500">Clientes Atendidos</p>
-                    </div>
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-                        <svg class="w-10 h-10 mx-auto text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <p class="text-3xl font-bold text-gray-800">24h</p>
-                        <p class="text-gray-500">Suporte Técnico</p>
-                    </div>
+                <div class="relative">
+                    <div class="absolute -top-4 -right-4 w-32 h-32 bg-green-200 rounded-full opacity-50 blur-xl"></div>
+                    <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-200 rounded-full opacity-50 blur-xl"></div>
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop" alt="[Imagem de dois homens trabalhando em um escritório moderno]" class="rounded-2xl shadow-2xl relative z-10">
+                </div>
+            </div>
+            <div class="fade-in-section mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <svg class="w-10 h-10 mx-auto text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <p class="text-3xl font-bold text-gray-800">10+</p>
+                    <p class="text-gray-500">Anos de Experiência</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <svg class="w-10 h-10 mx-auto text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.125-1.274-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.125-1.274.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <p class="text-3xl font-bold text-gray-800">200+</p>
+                    <p class="text-gray-500">Clientes Atendidos</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                    <svg class="w-10 h-10 mx-auto text-blue-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <p class="text-3xl font-bold text-gray-800">24h</p>
+                    <p class="text-gray-500">Suporte Técnico</p>
                 </div>
             </div>
         </section>
 
         <!-- ===== Sobre Section ===== -->
-        <section id="sobre" class="section bg-gray-50 py-16 md:py-24">
-            <div class="container mx-auto px-6">
+        <section id="sobre" class="bg-gray-50 py-16 md:py-24">
+            <div class="fade-in-section container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Sobre a InfoPrados Tecnologia</h2>
                     <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
@@ -190,8 +186,8 @@
         </section>
 
         <!-- ===== Serviços Section ===== -->
-        <section id="servicos" class="section py-16 md:py-24">
-            <div class="container mx-auto px-6">
+        <section id="servicos" class="container mx-auto px-6 py-16 md:py-24">
+            <div class="fade-in-section">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Nossos Serviços</h2>
                     <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
@@ -298,8 +294,8 @@
         </section>
 
         <!-- ===== Contato Section ===== -->
-        <section id="contato" class="section bg-gray-50 py-16 md:py-24">
-            <div class="container mx-auto px-6">
+        <section id="contato" class="bg-gray-50 py-16 md:py-24">
+            <div class="fade-in-section container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Entre em Contato</h2>
                     <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
@@ -358,40 +354,46 @@
                             <h3 class="text-2xl font-bold text-white">Solicite um Orçamento</h3>
                             <p class="text-blue-100">Preencha o formulário e entraremos em contato em breve.</p>
                         </div>
-                        <form id="contact-form" class="space-y-6">
-                            <div class="grid sm:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo *</label>
-                                    <input type="text" name="name" id="name" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Seu nome completo">
+                        <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+                            <input type="hidden" name="access_key" value="6940efb7-7f10-4fdf-bf2f-56c331e652d2">
+                            <input type="hidden" name="subject" value="Novo Contato do Site InfoPrados">
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                           
+                            <div class="space-y-6">
+                                <div class="grid sm:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-gray-700">Nome Completo *</label>
+                                        <input type="text" name="name" id="name" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Seu nome completo">
+                                    </div>
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-gray-700">Telefone *</label>
+                                        <input type="tel" name="phone" id="phone" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="(32) 9 9999-9999">
+                                    </div>
                                 </div>
                                 <div>
-                                    <label for="phone" class="block text-sm font-medium text-gray-700">Telefone *</label>
-                                    <input type="tel" name="phone" id="phone" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="(32) 9 9999-9999">
+                                    <label for="email" class="block text-sm font-medium text-gray-700">E-mail *</label>
+                                    <input type="email" name="email" id="email" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="seu@email.com">
                                 </div>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">E-mail *</label>
-                                <input type="email" name="email" id="email" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="seu@email.com">
-                            </div>
-                            <div>
-                                <label for="service" class="block text-sm font-medium text-gray-700">Serviço de Interesse</label>
-                                <select id="service" name="service" class="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                                    <option>Selecione um serviço</option>
-                                    <option>Consultoria em Hardware</option>
-                                    <option>Consultoria em Software</option>
-                                    <option>Análise de Maturidade Tecnológica</option>
-                                    <option>Outro</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700">Mensagem *</label>
-                                <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Descreva suas necessidades ou dúvidas..."></textarea>
-                            </div>
-                            <div>
-                                <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 border border-transparent rounded-lg shadow-md text-base font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 flex items-center justify-center">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                                    Enviar Mensagem
-                                </button>
+                                <div>
+                                    <label for="service" class="block text-sm font-medium text-gray-700">Serviço de Interesse</label>
+                                    <select id="service" name="service" class="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        <option>Selecione um serviço</option>
+                                        <option>Consultoria em Hardware</option>
+                                        <option>Consultoria em Software</option>
+                                        <option>Análise de Maturidade Tecnológica</option>
+                                        <option>Outro</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700">Mensagem *</label>
+                                    <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Descreva suas necessidades ou dúvidas..."></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 border border-transparent rounded-lg shadow-md text-base font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 flex items-center justify-center">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                        Enviar Mensagem
+                                    </button>
+                                </div>
                             </div>
                         </form>
                         <div id="form-feedback" class="mt-4 text-center"></div>
@@ -450,76 +452,83 @@
         </div>
     </footer>
 
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('.section');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            // Function to handle navigation
-            function navigateTo(hash) {
-                // Hide all sections
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-
-                // Show the target section
-                const targetSection = document.querySelector(hash);
-                if (targetSection) {
-                    targetSection.classList.add('active');
-                    targetSection.classList.add('fade-in');
-                } else {
-                    // Fallback to home if hash is invalid
-                    document.querySelector('#home').classList.add('active');
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Animação de revelação ao rolar ---
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
                 }
-                 // Scroll to the top of the main content area or header
-                window.scrollTo(0, 0);
-            }
-
-            // Handle clicks on navigation links
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetHash = this.getAttribute('href');
-                    navigateTo(targetHash);
-                    // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
-                });
             });
+        }, {
+            threshold: 0.1
+        });
+        sections.forEach(section => {
+            observer.observe(section);
+        });
 
-            // Handle mobile menu toggle
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
+        // --- Menu Móvel ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
 
-            // Initial page load handling
-            if (window.location.hash) {
-                navigateTo(window.location.hash);
-            } else {
-                navigateTo('#home');
-            }
-
-            // Contact Form Submission
-            const contactForm = document.getElementById('contact-form');
-            const formFeedback = document.getElementById('form-feedback');
-
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Basic validation feedback
-                formFeedback.textContent = 'Enviando sua mensagem...';
-                formFeedback.className = 'mt-4 text-center text-blue-600';
-
-                // Simulate form submission
-                setTimeout(() => {
-                    formFeedback.textContent = 'Obrigado pelo seu contato! Responderemos em breve.';
-                    formFeedback.className = 'mt-4 text-center text-green-600 font-semibold';
-                    contactForm.reset();
-                }, 1500);
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Fecha o menu ao clicar em um link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
         });
+
+        // --- Formulário de Contato ---
+        const form = document.getElementById('contact-form');
+        const formFeedback = document.getElementById('form-feedback');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            
+            formFeedback.innerHTML = "Enviando...";
+            formFeedback.className = 'mt-4 text-center text-blue-600';
+
+            fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let jsonResponse = await response.json();
+                    if (response.status == 200) {
+                        formFeedback.innerHTML = jsonResponse.message || "Mensagem enviada com sucesso!";
+                        formFeedback.className = 'mt-4 text-center text-green-600 font-semibold';
+                    } else {
+                        formFeedback.innerHTML = jsonResponse.message || "Ocorreu um erro.";
+                        formFeedback.className = 'mt-4 text-center text-red-600 font-semibold';
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    formFeedback.innerHTML = "Algo deu errado. Tente novamente.";
+                    formFeedback.className = 'mt-4 text-center text-red-600 font-semibold';
+                })
+                .then(function() {
+                    form.reset();
+                    setTimeout(() => {
+                        formFeedback.innerHTML = '';
+                    }, 5000);
+                });
+        });
+    });
     </script>
 
 </body>
